@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
+import ra.jpa.model.dto.PostResponseDto;
 import ra.jpa.model.entity.Post;
 import ra.jpa.repository.IPostRepository;
 import ra.jpa.service.IPostService;
@@ -45,7 +46,7 @@ public class JpaApplication {
     }
 
     @Bean
-    public CommandLineRunner runner(IPostService postService){
+    public CommandLineRunner runner(IPostRepository postRepository){
         return args -> {
             // viết code chạy 1 lần
 //            List<Post> list = postService.findAll();
@@ -56,6 +57,10 @@ public class JpaApplication {
 //            postRepository.deleteById(3L);
 //            Page<Post> posts = postService.paginationPost(0,2);
 //            System.out.println(posts);
+
+//            List<PostResponseDto> posts = postRepository.findAllForUser();
+//            System.out.println(posts);
+            postRepository.deletePostForUser();
         };
     }
 
